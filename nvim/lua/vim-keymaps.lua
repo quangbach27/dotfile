@@ -1,6 +1,11 @@
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
+-- Buffer navigate
+vim.keymap.set("n", "H", "<Cmd>bprevious<CR>", { desc = "Prev buffer" })
+vim.keymap.set("n", "L", "<Cmd>bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<C-w>", "<Cmd>bdelete<CR>", { desc = "Close buffer" })
+
 -- Navigate vim panes better
 keymap.set('n', '<c-k>', ':wincmd k<CR>')
 keymap.set('n', '<c-j>', ':wincmd j<CR>')
