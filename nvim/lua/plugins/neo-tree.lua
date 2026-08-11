@@ -4,10 +4,19 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
-		"nvim-tree/nvim-web-devicons", -- optional, but recommended
+		"nvim-tree/nvim-web-devicons",
 	},
 	lazy = false, -- neo-tree will lazily load itself
 	config = function()
+		require("neo-tree").setup({
+			filesystem = {
+				filtered_items = {
+					visible = true,
+					hide_dotfiles = false,
+					hide_gitignored = false,
+				},
+			},
+		})
 		vim.keymap.set(
 			"n",
 			"<C-n>",

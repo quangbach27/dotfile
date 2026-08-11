@@ -74,66 +74,38 @@ return {
 	},
 	{
 		"folke/noice.nvim",
-		opts = function(_, opts)
-			opts.routes = opts.routes or {}
-			opts.presets = opts.presets or {}
-
-			table.insert(opts.routes, {
-				filter = {
-					event = "notify",
-					find = "No information available",
+		event = "VeryLazy",
+		opts = {},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+		config = function()
+			require("noice").setup({
+				lsp = {
+					-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+					override = {
+						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+						["vim.lsp.util.stylize_markdown"] = true,
+						["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+					},
 				},
-				opts = { skip = true },
-			})
-
-			local focused = true
-			vim.api.nvim_create_autocmd("FocusGained", {
-				callback = function()
-					focused = true
-				end,
-			})
-			vim.api.nvim_create_autocmd("FocusLost", {
-				callback = function()
-					focused = false
-				end,
-			})
-
-			table.insert(opts.routes, 1, {
-				filter = {
-					cond = function()
-						return not focused
-					end,
+				presets = {
+					bottom_search = true, -- use a classic bottom cmdline for search
+					command_palette = true, -- position the cmdline and popupmenu together
+					long_message_to_split = true, -- long messages will be sent to a split
+					inc_rename = false, -- enables an input dialog for inc-rename.nvim
+					lsp_doc_border = true, -- add a border to hover docs and signature help
 				},
-				view = "notify_send",
-				opts = { stop = false },
 			})
-
-			opts.commands = {
-				all = {
-					view = "split",
-					opts = { enter = true, format = "details" },
-					filter = {},
-				},
-			}
-
-			vim.api.nvim_create_autocmd("FileType", {
-				pattern = "markdown",
-				callback = function(event)
-					vim.schedule(function()
-						require("noice.text.markdown").keys(event.buf)
-					end)
-				end,
-			})
-
-			opts.presets.lsp_doc_border = true
-
-			return opts
 		end,
 	},
 	{
 		"rcarriga/nvim-notify",
-		opts = {
-			timeout = 5000,
-		},
+		config = function()
+			require("notify").setup({
+				background_colour = "#1e1e1e",
+			})
+		end,
 	},
 }
