@@ -29,6 +29,9 @@ return {
 					},
 				}),
 
+        -- Vocab
+				null_ls.builtins.diagnostics.cspeel,
+
 				-- CSS/Tailwind linting (optional, needs stylelint + config in project)
 				null_ls.builtins.diagnostics.stylelint,
 			},
