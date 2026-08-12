@@ -23,7 +23,11 @@ return {
 							-- usePlaceholders = true,
 							analyses = {
 								unusedparams = true,
+								unusedwrite = true,
+								shadow = true,
 							},
+							gofumpt = true,
+							staticcheck = true,
 						},
 					},
 				},

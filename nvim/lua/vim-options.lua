@@ -56,11 +56,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = args.buf }
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+		-- go back to where you were before jumping to a definition
+		vim.keymap.set("n", "<leader>gb", "<C-t>", opts)
 		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 		vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
 
-		-- go back to where you were before jumping to a definition
-		vim.keymap.set("n", "<leader>gb", "<C-t>", opts)
 	end,
 })
