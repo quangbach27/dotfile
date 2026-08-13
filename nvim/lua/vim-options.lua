@@ -50,17 +50,7 @@ vim.diagnostic.config({
 	underline = true,
 })
 
--- Buffer-local keymaps, only set once an LSP actually attaches
-vim.api.nvim_create_autocmd("LspAttach", {
-	callback = function(args)
-		local opts = { buffer = args.buf }
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
-		-- go back to where you were before jumping to a definition
-		vim.keymap.set("n", "<leader>gb", "<C-t>", opts)
-		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
-
-	end,
-})
+opt.wrap = true
+opt.linebreak = true   -- wrap at word boundaries, not mid-word
+opt.breakindent = true -- wrapped lines keep the original line's indent
+opt.showbreak = "↳ "   -- optional: visual marker for wrapped lines

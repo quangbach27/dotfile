@@ -29,6 +29,7 @@ return {
 							gofumpt = true,
 							staticcheck = true,
 						},
+						buildFlags = { "-tags=integration,component" },
 					},
 				},
 			},
@@ -37,7 +38,11 @@ return {
 			require("mason").setup()
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "ts_ls", "gopls" },
+				ensure_installed = {
+					"lua_ls",
+					"ts_ls",
+					"gopls",
+				},
 			})
 
 			for server, config in pairs(opts.servers) do

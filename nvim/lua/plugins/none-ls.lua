@@ -2,6 +2,7 @@ return {
 	"nvimtools/none-ls.nvim",
 	config = function()
 		local null_ls = require("null-ls")
+
 		null_ls.setup({
 			sources = {
 				-- Lua
@@ -28,9 +29,6 @@ return {
 						"markdown",
 					},
 				}),
-
-        -- Vocab
-				null_ls.builtins.diagnostics.cspeel,
 
 				-- CSS/Tailwind linting (optional, needs stylelint + config in project)
 				null_ls.builtins.diagnostics.stylelint,
