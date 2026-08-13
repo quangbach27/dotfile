@@ -33,16 +33,22 @@ keymap.set("n", "sl", "<C-w>l")
 -- Buffer-local keymaps, only set once an LSP actually attaches
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
-		local opts = { buffer = args.buf }
+		local o = { buffer = args.buf }
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, o)
 		-- go back to where you were before jumping to a definition
-		vim.keymap.set("n", "<leader>gb", "<C-t>", opts)
-		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<leader>gb", "<C-t>", o)
+		vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, o)
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, o)
+		vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, o)
 	end,
 })
+
+-- Standard Leader key mapping to delete current buffer
+vim.keymap.set("n", "<leader>q", "<cmd>bdelete!<CR>", { desc = "Close Current Buffer", silent = true })
+
+-- Or close active buffer using BufferLine's command (if configured with bufdelete)
+vim.keymap.set("n", "<leader>Q", "<cmd>bdelete<CR>", { desc = "Close Buffer", silent = true })
 
 vim.keymap.set("n", "<leader>e", function()
   vim.diagnostic.open_float({ scope = "line", focusable = false })
