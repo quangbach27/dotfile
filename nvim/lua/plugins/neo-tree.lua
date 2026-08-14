@@ -6,10 +6,14 @@ return {
 		"MunifTanjim/nui.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
-	lazy = false, -- neo-tree will lazily load itself
+	lazy = false,
 	config = function()
 		require("neo-tree").setup({
 			filesystem = {
+				use_libuv_file_watcher = true, -- Automatically refresh on file add/remove/rename
+				follow_current_file = {
+					enabled = true, -- Automatically focus current file in tree
+				},
 				filtered_items = {
 					visible = true,
 					hide_dotfiles = false,
