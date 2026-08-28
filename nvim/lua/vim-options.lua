@@ -12,6 +12,8 @@ opt.shiftwidth = 4 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
+opt.report = 8888
+
 opt.wrap = false
 
 -- search settings
@@ -44,12 +46,7 @@ opt.fillchars = {
 	diff = "╱", -- diagonal lines for diff deleted lines
 }
 
-vim.diagnostic.config({
-	virtual_text = true,
-	-- virtual_lines = true,
-	underline = true,
-})
-
+-- soft wrap
 opt.wrap = true
 opt.linebreak = true -- wrap at word boundaries, not mid-word
 opt.breakindent = true -- wrapped lines keep the original line's indent
@@ -61,10 +58,10 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHo
 	pattern = "*",
 	command = "if mode() != 'c' | checktime | endif",
 })
--- Optional: Notify when a file is changed externally and reloaded
-vim.api.nvim_create_autocmd("FileChangedShellPost", {
-  pattern = "*",
-  callback = function()
-    vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.INFO)
-  end,
-})
+-- -- Optional: Notify when a file is changed externally and reloaded
+-- vim.api.nvim_create_autocmd("FileChangedShellPost", {
+-- 	pattern = "*",
+-- 	callback = function()
+-- 		vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.INFO)
+-- 	end,
+-- })
