@@ -70,6 +70,56 @@ return {
 			})
 
 			vim.api.nvim_set_hl(0, "BufferLineIndicatorSelected", { fg = "#f14c4c" })
+
+			local max_buffers = 6
+			local group = vim.api.nvim_create_augroup("BufferlineMaxBuffers", { clear = true })
+
+			vim.api.nvim_create_autocmd("BufEnter", {
+				group = group,
+				callback = function(args)
+					vim.b[args.buf].bufline_last_used = vim.uv.hrtime()
+				end,
+			})
+
+			local function has_pending_lsp_request(bufnr)
+				for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+					for _, req in pairs(client.requests) do
+						if req.bufnr == bufnr then
+							return true
+						end
+					end
+				end
+				return false
+			end
+
+			vim.api.nvim_create_autocmd("BufAdd", {
+				group = group,
+				callback = function()
+					local listed = vim.tbl_filter(function(bufnr)
+						return vim.bo[bufnr].buflisted
+					end, vim.api.nvim_list_bufs())
+
+					if #listed <= max_buffers then
+						return
+					end
+
+					local current = vim.api.nvim_get_current_buf()
+					local candidates = vim.tbl_filter(function(bufnr)
+						return bufnr ~= current and vim.fn.bufwinid(bufnr) == -1
+					end, listed)
+
+					table.sort(candidates, function(a, b)
+						return (vim.b[a].bufline_last_used or 0) < (vim.b[b].bufline_last_used or 0)
+					end)
+
+					for _, bufnr in ipairs(candidates) do
+						if not vim.bo[bufnr].modified and not has_pending_lsp_request(bufnr) then
+							pcall(vim.cmd, "bdelete " .. bufnr)
+							break
+						end
+					end
+				end,
+			})
 		end,
 	},
 	{
@@ -98,7 +148,6 @@ return {
 					lsp_doc_border = true, -- add a border to hover docs and signature help
 				},
 			})
-
 		end,
 	},
 	{

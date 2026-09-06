@@ -28,21 +28,32 @@ return {
 							},
 							gofumpt = true,
 							staticcheck = true,
-							buildFlags = { "-tags=integration,component" },
+							buildFlags = { "-tags=integration,component,testutils" },
 						},
 					},
 				},
+				pyright = {
+					settings = {
+						python = {
+							analysis = {
+								typeCheckingMode = "basic",
+								autoSearchPaths = true,
+								useLibraryCodeForTypes = true,
+							},
+						},
+					},
+				},
+				sqls = {},
+				jdtls = {},
+				terraformls = {},
 			},
 		},
 		config = function(_, opts)
 			require("mason").setup()
 
 			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"ts_ls",
-					"gopls",
-				},
+				ensure_installed = vim.tbl_keys(opts.servers),
+				automatic_enable = { exclude = { "jdtls" } },
 			})
 
 			for server, config in pairs(opts.servers) do
@@ -65,7 +76,7 @@ return {
 				end,
 			})
 
-            -- Diagnostic config
+			-- Diagnostic config
 			vim.keymap.set("n", "<leader>e", function()
 				vim.diagnostic.open_float({ scope = "line", focusable = false })
 			end, { desc = "Show line diagnostics" })

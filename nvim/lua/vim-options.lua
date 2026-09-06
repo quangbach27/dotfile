@@ -54,14 +54,3 @@ opt.showbreak = "↳ " -- optional: visual marker for wrapped lines
 
 -- reload the file
 opt.autoread = true
-vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-	pattern = "*",
-	command = "if mode() != 'c' | checktime | endif",
-})
--- -- Optional: Notify when a file is changed externally and reloaded
--- vim.api.nvim_create_autocmd("FileChangedShellPost", {
--- 	pattern = "*",
--- 	callback = function()
--- 		vim.notify("File changed on disk. Buffer reloaded.", vim.log.levels.INFO)
--- 	end,
--- })

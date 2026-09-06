@@ -4,7 +4,23 @@ return {
 	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		local languages = { "rust", "javascript", "lua", "go", "typescript", "markdown", "markdown_inline" }
+		local languages = {
+			"rust",
+			"javascript",
+			"lua",
+			"go",
+			"gomod",
+			"gosum",
+			"gowork",
+			"typescript",
+			"markdown",
+			"markdown_inline",
+			"terraform",
+			"hcl",
+			"rust",
+			"sql",
+			"toml",
+		}
 
 		require("nvim-treesitter").install(languages)
 

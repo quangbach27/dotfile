@@ -10,15 +10,35 @@ return {
 			vim.keymap.set("n", "<leader>hp", ":Gitsigns preview_hunk<CR>", {})
 			vim.keymap.set("n", "<leader>ht", ":Gitsigns toggle_current_line_blame<CR>", {})
 
-			vim.keymap.set("n", "<leader>hs", ":Gitsigns stage_hunk")
-			vim.keymap.set("n", "<leader>hS", ":Gitsigns stage_buffer")
-			vim.keymap.set("n", "<leader>hu", ":Gitsigns undo_stage_hunk")
+			-- vim.keymap.set("n", "<leader>hs", ":Gitsigns stage_hunk")
+			-- vim.keymap.set("n", "<leader>hS", ":Gitsigns stage_buffer")
+			-- vim.keymap.set("n", "<leader>hu", ":Gitsigns undo_stage_hunk")
 
-			vim.keymap.set("n", "<leader>hr", ":Gitsigns reset_hunk", {})
-			vim.keymap.set("n", "<leader>hR", ":Gitsigns reset_buffer", {})
+			vim.keymap.set("n", "<leader>hr", ":Gitsigns reset_hunk<CR>", {})
+			vim.keymap.set("n", "<leader>hR", ":Gitsigns reset_buffer<CR>", {})
 
-			vim.keymap.set("n", "<leader>h[", ":Gitsigns next_hunk<CR>", {})
-			vim.keymap.set("n", "<leader>h]", ":Gitsigns prev_hunk<CR>", {})
+			vim.keymap.set("n", "<leader>hn", ":Gitsigns next_hunk<CR>", {})
+			vim.keymap.set("n", "<leader>hN", ":Gitsigns prev_hunk<CR>", {})
 		end,
+	},
+	{
+		"kdheepak/lazygit.nvim",
+		lazy = true,
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
 	},
 }
