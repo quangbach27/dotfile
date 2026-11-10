@@ -1,0 +1,79 @@
+{
+  "workbench.colorTheme": "Dark+",
+  "scm.defaultViewMode": "tree",
+  "scm.compactFolders": true,
+  "files.autoSave": "afterDelay",
+  "editor.minimap.enabled": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+    },
+  },
+  "vim.leader": "<space>",
+  "vim.useSystemClipboard": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"],
+    },
+    {
+      "before": ["<leader>", "f", "g"],
+      "commands": ["workbench.action.findInFiles"],
+    },
+    {
+      "before": ["<leader>", "g", "f"],
+      "commands": ["editor.action.formatDocument"],
+    },
+    {
+      "before": ["<leader>", "g", "d"],
+      "commands": ["editor.action.revealDefinition"],
+    },
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"],
+    },
+    {
+      "before": ["<leader>", "g", "b"],
+      "commands": ["workbench.action.navigateBack"],
+    },
+    {
+      "before": ["<leader>", "g", "B"],
+      "commands": ["workbench.action.navigateForward"],
+    },
+    {
+      "before": ["H"],
+      "commands": ["workbench.action.previousEditorInGroup"],
+    },
+    {
+      "before": ["L"],
+      "commands": ["workbench.action.nextEditorInGroup"],
+    },
+    {
+      "before": ["<leader>", "v"],
+      "commands": ["workbench.action.splitEditorRight"],
+    },
+    {
+      "before": ["<leader>", "h"],
+      "commands": ["workbench.action.splitEditorDown"],
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": ["workbench.action.closeActiveEditor"],
+    },
+    {
+      "before": ["<leader>", "Q"],
+      "commands": ["workbench.action.closeOtherEditors"],
+    },
+  ],
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.browser.showInTitleBar": false,
+}
