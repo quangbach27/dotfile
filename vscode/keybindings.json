@@ -1,0 +1,34 @@
+// Place your key bindings in this file to override the defaults
+[
+  { "key": "ctrl+h", "command": "workbench.action.navigateLeft" },
+  { "key": "ctrl+l", "command": "workbench.action.navigateRight" },
+  { "key": "ctrl+j", "command": "workbench.action.navigateDown" },
+  { "key": "ctrl+k", "command": "workbench.action.navigateUp" },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.view.explorer",
+    "when": "!sideBarFocus",
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus",
+  },
+  {
+    "key": "ctrl+s c",
+    "command": "workbench.action.terminal.new",
+  },
+  {
+    "key": "ctrl+s v",
+    "command": "workbench.action.createTerminalEditorSide",
+  },
+  { "key": "ctrl+s n", "command": "workbench.action.terminal.focusNext" },
+  { "key": "ctrl+s l", "command": "workbench.action.increaseViewWidth" },
+  { "key": "ctrl+s h", "command": "workbench.action.decreaseViewWidth" },
+  { "key": "ctrl+s j", "command": "workbench.action.increaseViewHeight" },
+  { "key": "ctrl+s k", "command": "workbench.action.decreaseViewHeight" },
+  {
+    "key": "ctrl+s z",
+    "command": "workbench.action.toggleZenMode",
+  },
+]
